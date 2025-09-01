@@ -2,7 +2,7 @@
     <div class="warp-search">
         <mdui-icon name="search"></mdui-icon>
         <template v-if="input === true">
-            <input ref="input" class="text" type="text" :value="props.label">
+            <input ref="input" class="text" type="text" :value="props.label" />
         </template>
         <template v-else-if="input === false">
             <div class="text">{{ label }}</div>

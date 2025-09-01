@@ -1,7 +1,7 @@
 {
   "name": "qm-lite",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "mdui": "^2.1.4",
+    "pinia": "^3.0.3",
     "vue": "^3.5.12",
     "vue-router": "^4.5.1",
     "vue3-carousel": "^0.16.0"

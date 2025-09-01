@@ -10,7 +10,7 @@
 import { ref, onMounted } from 'vue'
 import Banner from '../components/Banner.vue'
 import Playlist from '../components/Playlist.vue'
-import SearchInput from '../components/SearchInput.vue'
+import SearchInput from '../components/Search/SearchInput.vue'
 import { getRecBanners } from '../api/banner.js'
 import { getRecPlaylist } from '../api/playList.js'
 

@@ -18,7 +18,14 @@ const routes = [
     {
         path: '/song-list/:id',
         name: '歌单',
-        component: () => import('../views/SongList.vue')
+        component: () => import('../views/SongList.vue'),
+        children: [
+            {
+                path: 'details',
+                name: '歌单详情',
+                component: () => import('../views/SongList/SongListDetails.vue')
+            }
+        ]
     },
     {
         path: '/search',

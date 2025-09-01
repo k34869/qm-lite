@@ -5,9 +5,9 @@
         </mdui-top-app-bar>
 
         <mdui-layout-main class="layout-main">
-            <router-view v-slot="{ Component }" :exclude="[ 'Search' ]">
+            <router-view v-slot="{ Component }" :exclude="[ 'Search', 'SongList' ]">
                 <transition name="fade" mode="out-in">
-                    <keep-alive :exclude="[ 'Search' ]">
+                    <keep-alive :exclude="[ 'Search', 'SongList' ]">
                         <component :is="Component" />
                     </keep-alive>
                 </transition>
@@ -33,7 +33,8 @@ const route = useRoute()
 const isHide = ref(false)
 
 watch(() => route.fullPath, (newPath) => {
-    if (newPath === '/search') {
+    if (newPath === '/search' || /^\/song-list/.test(newPath)) {
+        console.log(newPath);
         isHide.value = true
     } else {
         isHide.value = false
@@ -41,7 +42,7 @@ watch(() => route.fullPath, (newPath) => {
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .layout-header {
     height: 65px;
 }
@@ -55,18 +56,18 @@ mdui-layout {
     padding-left: env(safe-area-inset-left);
     padding-right: constant(safe-area-inset-right);
     padding-right: env(safe-area-inset-right);
-}
 
-mdui-layout.hide .layout-header {
-    transform: translateY(-65px);
-}
+    &.hide .layout-header {
+        transform: translateY(-65px);
+    }
 
-mdui-layout.hide .layout-footer {
-    transform: translateY(64px);
-}
+    &.hide .layout-footer {
+        transform: translateY(64px);
+    }
 
-mdui-layout.hide .layout-main {
-    margin-top: 0;
+    &.hide .layout-main {
+        margin-top: 0;
+    }
 }
 
 .layout-header,
@@ -82,7 +83,7 @@ mdui-layout.hide .layout-main {
 }
 
 .layout-main {
-    padding-bottom: 80px !important;
+    padding-bottom: 70px !important;
     width: 100%;
     margin-top: 66px;
     padding: 10px 15px;

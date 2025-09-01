@@ -2,7 +2,7 @@
     <div class="plate-title">热门搜索</div>
     <div class="warp-search-hot">
         <template v-if="searchHot.result !== -1">
-            <div class="item" v-for="(e, i) in searchHot.data">
+            <div class="item waves-effect waves-light" v-for="(e, i) in searchHot.data">
                 <span class="s-num" :class="{ hot: i === 0 }">{{ i + 1 }}</span>
                 <span class="keyword">{{ e.k }}</span>
             </div>
@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { getSearchHot } from '../api/searchHot.js'
+import { getSearchHot } from '../../api/searchHot.js'
 
 const searchHot = ref({ result: -1 })
 

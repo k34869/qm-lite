@@ -8,7 +8,7 @@
             </div>
         </template>
         <template v-else>
-            <div class="item" v-for="e in playlistData.data.list">
+            <div class="item waves-effect waves-light" v-for="e in playlistData.data.list" @click="$router.push({ path: '/song-list/' + e.content_id })">
                 <img :src="e.cover" class="cover" />
                 <mdui-badge class="listen-num">{{ formatNumber(e.listen_num) }}</mdui-badge>
                 <span class="title">{{ e.title }}</span>

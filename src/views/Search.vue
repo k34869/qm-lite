@@ -7,8 +7,8 @@
 
 <script setup>
 import { onMounted, useTemplateRef } from 'vue';
-import SearchInput from '../components/SearchInput.vue';
-import SearchHot from '../components/SearchHot.vue';
+import SearchInput from '../components/Search/SearchInput.vue';
+import SearchHot from '../components/Search/SearchHot.vue';
 
 defineOptions({
     name: 'Search'

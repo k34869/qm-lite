@@ -52,19 +52,6 @@ onMounted(() => {
     font-size: 4.6vw;
 }
 
-.progress {
-    width: 100%;
-    position: relative;
-    padding: 15vw 0;
-
-    mdui-circular-progress {
-        position: absolute;
-        left: 0;
-        right: 0;
-        margin: auto;
-    }
-}
-
 .warp-top-cate {
     display: grid;
     grid-template-columns: repeat(3, auto);
