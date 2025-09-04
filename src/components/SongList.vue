@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="song-list-header-description" v-html="songList.data.desc" @click="$router.push({ path: $route.path + '/details' })"></div>
+            <div class="song-list-header-description" v-html="songList.data.desc.replaceAll('\\n', '<br>')" @click="$router.push({ path: $route.path + '/details' })"></div>
         </div>
         <SongListMain :song-list="songList.data.songlist" />
     </div>

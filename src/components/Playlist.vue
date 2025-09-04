@@ -1,5 +1,5 @@
 <template>
-    <h3 class="plate-1">歌单推荐</h3>
+    <h3 class="plate-1">{{ name }}</h3>
     <div class="warp-playlist" v-bind="$attrs">
         <template v-if="playlistData.result === -1">
             <div class="item" v-for="i in 12" :key="i">
@@ -22,6 +22,7 @@ import 'mdui/components/badge.js';
 import { formatNumber } from '../utils/formatNumber.js'
 
 defineProps({
+    name: String,
     playlistData: Object
 })
 </script>

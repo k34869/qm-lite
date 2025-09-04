@@ -1,13 +1,13 @@
 <template>
-    <mdui-layout :class="{ hide: isHide }">
+    <mdui-layout :class="{ hIsHide: isHide.h, fIsHide: isHide.f }">
         <mdui-top-app-bar class="layout-header">
             <Header />
         </mdui-top-app-bar>
 
         <mdui-layout-main class="layout-main">
-            <router-view v-slot="{ Component }" :exclude="[ 'Search', 'SongList' ]">
+            <router-view v-slot="{ Component }" :exclude="['Search', 'SongList']">
                 <transition name="fade" mode="out-in">
-                    <keep-alive :exclude="[ 'Search', 'SongList' ]">
+                    <keep-alive :exclude="['Search', 'SongList']">
                         <component :is="Component" />
                     </keep-alive>
                 </transition>
@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { computed } from 'vue';
 import { useRoute } from 'vue-router'
 import Header from './components/Header.vue';
 import Footer from './components/Footer.vue';
@@ -30,19 +30,19 @@ import 'mdui/components/top-app-bar.js';
 import 'mdui/components/bottom-app-bar.js';
 
 const route = useRoute()
-const isHide = ref(false)
 
-watch(() => route.fullPath, (newPath) => {
-    if (newPath === '/search' || /^\/song-list/.test(newPath)) {
-        console.log(newPath);
-        isHide.value = true
+const isHide = computed(() => {
+    if (route.name === '搜索' || route.name === '歌单') {
+        return { h: true, f: true }
+    } else if (route.name === '排行榜') {
+        return { h: false, f: true }
     } else {
-        isHide.value = false
+        return { h: false, f: false }
     }
 })
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .layout-header {
     height: 65px;
 }
@@ -56,19 +56,20 @@ mdui-layout {
     padding-left: env(safe-area-inset-left);
     padding-right: constant(safe-area-inset-right);
     padding-right: env(safe-area-inset-right);
-
-    &.hide .layout-header {
-        transform: translateY(-65px);
-    }
-
-    &.hide .layout-footer {
-        transform: translateY(64px);
-    }
-
-    &.hide .layout-main {
-        margin-top: 0;
-    }
 }
+
+mdui-layout.hIsHide .layout-header {
+    transform: translateY(-65px);
+}
+
+mdui-layout.fIsHide .layout-footer {
+    transform: translateY(64px);
+}
+
+mdui-layout.hIsHide .layout-main {
+    margin-top: 0;
+}
+
 
 .layout-header,
 .layout-footer {
@@ -83,10 +84,8 @@ mdui-layout {
 }
 
 .layout-main {
-    padding-bottom: 70px !important;
     width: 100%;
     margin-top: 66px;
-    padding: 10px 15px;
     transition: margin-top 0.3s ease;
 }
 </style>

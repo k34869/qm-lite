@@ -12,7 +12,7 @@ const routes = [
     },
     {
         path: '/top',
-        name: '排行',
+        name: '排行榜',
         component: () => import('../views/Top.vue')
     },
     {

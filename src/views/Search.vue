@@ -1,14 +1,14 @@
 <template>
     <div class="warp-search">
         <SearchInput label="搜索你想找的音乐" ref="input" />
-        <SearchHot />
+        <!-- <SearchHot /> -->
     </div>
 </template>
 
 <script setup>
 import { onMounted, useTemplateRef } from 'vue';
-import SearchInput from '../components/Search/SearchInput.vue';
-import SearchHot from '../components/Search/SearchHot.vue';
+import SearchInput from '../components/SearchInput.vue';
+// import SearchHot from '../components/Search/SearchHot.vue';
 
 defineOptions({
     name: 'Search'

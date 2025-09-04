@@ -8,7 +8,7 @@
                 <img class="avater" :src="songList.headurl" />
                 <div class="song-list-details-nick-name">{{ songList.nickname }}</div>
             </div>
-            <div class="song-list-details-description" v-html="songList.desc"></div>
+            <div class="song-list-details-description" v-html="songList.desc.replaceAll('\\n', '<br>')"></div>
         </div>
     </div>
 </template>
