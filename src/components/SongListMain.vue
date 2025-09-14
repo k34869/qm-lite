@@ -1,6 +1,6 @@
 <template>
     <div class="song-list-main">
-        <SearchInput label="搜索音乐" v-model="searchKey" @clearInput="searchKey = ''" />
+        <SearchInput class="w1" label="搜索音乐" v-model="searchKey" @clearInput="searchKey = ''" />
         <div class="song-list-main-contrl">
             <template v-if="!searchKey">
                 <div class="item waves-effect waves-light br-10">
@@ -66,13 +66,16 @@ const filterSongList = computed(() => {
 </script>
 
 <style scoped>
+.w1 {
+    margin-bottom: 1.8vw;
+}
+
 .song-list-main {
     background-color: rgb(var(--mdui-color-surface));
     min-height: calc(100vh - 61.6vw);
     padding: 10px 15px;
     width: 100vw;
     position: relative;
-    left: -15px;
 }
 
 .song-list-main .song-list-main-contrl {

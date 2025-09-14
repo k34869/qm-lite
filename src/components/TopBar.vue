@@ -1,5 +1,5 @@
 <template>
-    <div class="warp-header">
+    <div class="wrap">
         <div class="app-name">{{ $route.name }}</div>
         <div class="logo">
             <mdui-icon name='music_note'></mdui-icon>
@@ -12,11 +12,11 @@ import 'mdui/components/button-icon.js'
 </script>
 
 <style lang="scss" scoped>
-.warp-header {
+@import "../assets/scss/flex";
+
+.wrap {
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    @include flex(space-between, center);
     width: 100%;
     height: 65px;
     padding: 10px 20px;
@@ -32,9 +32,7 @@ import 'mdui/components/button-icon.js'
     }
 
     .logo {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        @include flex(center, center);
         background-color: rgb(var(--mdui-color-primary));
         border-radius: 50px;
         width: 30px;
