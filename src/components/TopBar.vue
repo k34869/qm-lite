@@ -1,7 +1,7 @@
 <template>
-    <div class="wrap">
+    <div class="wrap flex f-sb-center">
         <div class="app-name">{{ $route.name }}</div>
-        <div class="logo">
+        <div class="logo flex f-center">
             <mdui-icon name='music_note'></mdui-icon>
         </div>
     </div>
@@ -11,12 +11,9 @@
 import 'mdui/components/button-icon.js'
 </script>
 
-<style lang="scss" scoped>
-@import "../assets/scss/flex";
-
+<style scoped>
 .wrap {
     position: relative;
-    @include flex(space-between, center);
     width: 100%;
     height: 65px;
     padding: 10px 20px;
@@ -32,7 +29,6 @@ import 'mdui/components/button-icon.js'
     }
 
     .logo {
-        @include flex(center, center);
         background-color: rgb(var(--mdui-color-primary));
         border-radius: 50px;
         width: 30px;

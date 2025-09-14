@@ -1,6 +1,6 @@
 <template>
     <div class="wrap">
-        <div class="search-input">
+        <div class="search-input flex f-fs-center">
             <mdui-icon name="search"></mdui-icon>
             <template v-if="disableInput === false">
                 <input ref="input" class="input" type="text" :value="modelValue" @input="onInput" :placeholder="label" />
@@ -51,46 +51,36 @@ defineExpose({
 </script>
 
 <style scoped>
-.wrap {
-    position: relative;
-    width: 100vw;
-    z-index: 1;
-}
-
 .search-input {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
     height: 9.2vw;
     padding: 2.2vw 2.7vw;
-    margin: 1.2vw 15px;
     border-radius: 100px;
     font-size: 3.8vw;
     color: rgb(var(--mdui-color-on-surface-variant));
     background-color: rgb(var(--mdui-color-surface-container-highest));
     box-shadow: var(--mdui-elevation-level2);
-}
 
-.search-input .input {
-    height: inherit;
-    font-size: 3.8vw;
-    flex-grow: 1;
-    color: rgb(var(--mdui-color-on-surface-variant));
-}
+    .input {
+        height: inherit;
+        font-size: 3.8vw;
+        flex-grow: 1;
+        color: rgb(var(--mdui-color-on-surface-variant));
+    }
 
-.search-input mdui-button-icon[icon=clear] {
-    width: 8vw;
-    height: 8vw;
-    font-size: 5vw;
-}
+    mdui-button-icon[icon=clear] {
+        width: 8vw;
+        height: 8vw;
+        font-size: 5vw;
+    }
 
-.search-input mdui-icon[name=search] {
-    margin-right: 1vw;
-    font-size: 5vw !important;
-}
+    mdui-icon[name=search] {
+        margin-right: 1vw;
+        font-size: 5vw !important;
+    }
 
-.search-input .text {
-    position: relative;
-    top: -1.2px;
+    .text {
+        position: relative;
+        top: -1.2px;
+    }
 }
 </style>

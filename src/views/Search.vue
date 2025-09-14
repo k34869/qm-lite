@@ -1,6 +1,6 @@
 <template>
     <div class="warp-search">
-        <SearchInput label="搜索你想找的音乐" ref="input" />
+        <SearchInput label="搜索你想找的音乐" ref="input" @cancel="$router.back()" />
         <!-- <SearchHot /> -->
     </div>
 </template>

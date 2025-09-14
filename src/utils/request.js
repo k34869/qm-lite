@@ -1,6 +1,9 @@
-const baseUrl = 'http://localhost:3300'
+import { snackbar } from 'mdui/functions/snackbar.js';
 
-export function request(url, options = {}, retryDelay = 2000) {
+const baseUrl = 'http://localhost:3300'
+let count = 0
+
+export function request(url, options = {}, retryDelay = 3000) {
     const requestUrl = /^http:\/\/|^https:\/\//.test(url) ? url : `${baseUrl}${url}`
 
     return new Promise((resolve) => {
@@ -8,14 +11,21 @@ export function request(url, options = {}, retryDelay = 2000) {
             fetch(requestUrl, options)
                 .then(response => {
                     if (response.ok) {
+                        count = 0
                         resolve(response); // 请求成功
                     } else {
-                        console.warn(`请求失败，状态码: ${response.status}，${retryDelay}ms 后重试...`);
+                        if (count === 0) {
+                            snackbar({ message: `❌加载失败, ${retryDelay / 1000}s 后重试...` })
+                            count = 1
+                        }
                         setTimeout(attempt, retryDelay);
                     }
                 })
-                .catch(err => {
-                    console.warn(`请求错误: ${err.message}，${retryDelay}ms 后重试...`);
+                .catch(() => {
+                    if (count === 0) {
+                        snackbar({ message: `❌加载失败, ${retryDelay / 1000}s 后重试...` })
+                        count = 1
+                    }
                     setTimeout(attempt, retryDelay);
                 });
         }

@@ -12,7 +12,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { getSearchHot } from '../../api/searchHot.js'
+import { getSearchHot } from '../api/searchHot.js'
 
 const searchHot = ref({ result: -1 })
 
@@ -24,7 +24,7 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .plate-title {
     display: inline;
     padding: 1.3vw 0;

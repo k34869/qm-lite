@@ -1,91 +1,103 @@
 <template>
-    <mdui-layout :class="{ hIsHide: isHide.h, fIsHide: isHide.f }">
-        <mdui-top-app-bar class="layout-header">
-            <Header />
+    <mdui-layout :class="{ topHide: isHide.top, bottomHide: isHide.bottom }">
+        <mdui-top-app-bar class="fixed">
+            <TopBar />
         </mdui-top-app-bar>
 
-        <mdui-layout-main class="layout-main">
-            <router-view v-slot="{ Component }" :exclude="['Search', 'SongList']">
+        <mdui-layout-main>
+            <router-view v-slot="{ Component }">
                 <transition name="fade" mode="out-in">
-                    <keep-alive :exclude="['Search', 'SongList']">
-                        <component :is="Component" />
+                    <keep-alive :include="include">
+                        <component :is="Component" :key="key" />
                     </keep-alive>
                 </transition>
             </router-view>
         </mdui-layout-main>
 
-        <mdui-bottom-app-bar class="layout-footer">
-            <Footer />
+        <mdui-bottom-app-bar class="fixed">
+            <BottomBar />
         </mdui-bottom-app-bar>
     </mdui-layout>
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import Header from './components/Header.vue';
-import Footer from './components/Footer.vue';
-import 'mdui/components/layout.js';
-import 'mdui/components/top-app-bar.js';
-import 'mdui/components/bottom-app-bar.js';
+import 'mdui/components/layout.js'
+import 'mdui/components/layout-main.js'
+import 'mdui/components/top-app-bar.js'
+import 'mdui/components/bottom-app-bar.js'
+import TopBar from '@/components/TopBar.vue'
+import BottomBar from '@/components/BottomBar.vue'
 
 const route = useRoute()
 
 const isHide = computed(() => {
-    if (route.name === '搜索' || route.name === '歌单') {
-        return { h: true, f: true }
-    } else if (route.name === '排行榜') {
-        return { h: false, f: true }
+    if (/^(搜索|歌单|专辑|查看歌手|歌单详情)$/.test(route.name)) {
+        return { top: true, bottom: true }
+    } else if (/^(排行|分类歌单|歌手)$/.test(route.name)) {
+        return { top: false, bottom: true }
     } else {
-        return { h: false, f: false }
+        return { top: false, bottom: false }
+    }
+})
+
+const key = computed(() => {
+    if (/歌单/.test(route.name)) {
+        return route.params.id
+    } else {
+        return undefined
+    }
+})
+
+const include = computed(() => {
+    if (/^(首页|我的)$/.test(route.name)) {
+        return ['首页', '我的']
+    } else if (/^(分类歌单)$/.test(route.name)) {
+        return ['首页', '我的', '分类歌单']
+    } else {
+        return undefined
     }
 })
 </script>
 
 <style scoped>
-.layout-header {
-    height: 65px;
-}
-
 mdui-layout {
-    padding-top: constant(safe-area-inset-top);
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: constant(safe-area-inset-bottom);
-    padding-bottom: env(safe-area-inset-bottom);
-    padding-left: constant(safe-area-inset-left);
-    padding-left: env(safe-area-inset-left);
-    padding-right: constant(safe-area-inset-right);
-    padding-right: env(safe-area-inset-right);
-}
+    mdui-top-app-bar {
+        height: calc(65px + var(--safe-area-inset-top));
+        padding-top: var(--safe-area-inset-top);
+    }
 
-mdui-layout.hIsHide .layout-header {
-    transform: translateY(-65px);
-}
+    mdui-bottom-app-bar {
+        display: block !important;
+        height: auto !important;
+        padding-bottom: var(--safe-area-inset-bottom);
+        background-color: rgb(var(--mdui-color-surface));
+        z-index: 1;
+    }
 
-mdui-layout.fIsHide .layout-footer {
-    transform: translateY(64px);
-}
+    mdui-layout-main {
+        width: 100%;
+        padding: 0 !important;
+        margin-top: calc(66px + var(--safe-area-inset-top));
+        padding-bottom: var(--safe-area-inset-bottom);
+        transition: margin-top 0.3s ease;
+    }
 
-mdui-layout.hIsHide .layout-main {
-    margin-top: 0;
-}
+    &.topHide {
+        mdui-top-app-bar {
+            transform: translateY(calc(-65px - var(--safe-area-inset-top)));
+        }
 
+        mdui-layout-main {
+            margin-top: var(--safe-area-inset-top);
+        }
+    }
 
-.layout-header,
-.layout-footer {
-    position: fixed !important;
-    width: 100%;
-    transition: transform 0.3s ease;
-}
-
-.layout-footer {
-    display: block !important;
-    height: auto !important;
-}
-
-.layout-main {
-    width: 100%;
-    margin-top: 66px;
-    transition: margin-top 0.3s ease;
+    &.bottomHide {
+        mdui-bottom-app-bar {
+            transform: translateY(calc(65px + var(--safe-area-inset-top)));
+        }
+    }
 }
 </style>

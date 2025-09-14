@@ -1,48 +1,52 @@
 <template>
     <div class="wrap">
-        <Carousel :="{ itemsToShow: 1, wrapAround: true, gap: 0, autoplay: 4800 }">
-            <template v-if="data === -1">
-                <Slide>
-                    <div class="carousel-item"></div>
-                </Slide>
-            </template>
-            <template v-else>
-                <Slide v-for="e in data">
+        <template v-if="data === -1">
+            <div class="carousel-item">
+                <div class="picture skeleton"></div>
+            </div>
+        </template>
+        <template v-else>
+            <Swiper :pagination="true" :modules="[Pagination, Autoplay]" :autoplay="{ delay: 4800 }" :loop="true">
+                <SwiperSlide v-for="e in data">
                     <div class="carousel-item">
                         <img :src="e.picUrl" class="picture">
                     </div>
-                </Slide>
-            </template>
-            <template v-if="data !== -1" #addons>
-                <Pagination />
-            </template>
-        </Carousel>
+                </SwiperSlide>
+            </Swiper>
+        </template>
     </div>
 </template>
 
 <script setup>
-import { Carousel, Slide, Pagination } from 'vue3-carousel'
+import { Swiper, SwiperSlide } from 'swiper/vue'
+import { Pagination, Autoplay } from 'swiper/modules'
+import 'swiper/css/pagination'
 
 defineProps({
-    data: [ Array, Number ]
+    data: [Array, Number]
 })
 </script>
 
 <style scoped>
 .wrap {
     width: 100vw;
+    margin-bottom: 2.2vw;
 }
 
 .carousel-item {
     width: 100%;
-    margin: 0 15px;
-    border-radius: 1.5vw;
-    overflow: hidden;
+    padding: 0 15px;
     height: 37vw;
-    background-color: rgb(var(--mdui-color-surface-container));
+
+    .picture {
+        border-radius: 1.5vw;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
 }
 
-.carousel-item .picture {
+.swiper {
     width: 100%;
     height: 100%;
 }

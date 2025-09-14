@@ -1,0 +1,1 @@
+function s(t){return typeof t>"u"||t===null}function f(t,i){const e=[];let n=[];for(let u=0;u<t.length;u++)n.push(t[u]),n.length===i&&(e.push(n),n=[]);return n.length&&e.push(n),e}export{f as c,s as i};

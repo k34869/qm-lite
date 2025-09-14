@@ -1,0 +1,8 @@
+{
+    "appId": "com.qm.lite.timeic",
+    "appName": "QM Lite",
+    "webDir": "web",
+    "server": {
+        "cleartext": true
+    }
+}

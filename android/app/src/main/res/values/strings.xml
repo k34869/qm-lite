@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">QM Lite</string>
+    <string name="title_activity_main">QM Lite</string>
+    <string name="package_name">com.qm.lite.timeic</string>
+    <string name="custom_url_scheme">com.qm.lite.timeic</string>
+</resources>
