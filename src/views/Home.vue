@@ -3,7 +3,8 @@
         <SearchInput class="w1" :disable-input="true" label="搜索你想找的音乐" @click="$router.push({ name: '搜索' })" />
         <Banners :data="banners" />
         <div class="plate-list flex f-sa-center">
-            <div class="item waves-effect waves-light br-10" v-for="e in plateList" @click="$router.push({ name: e.name })">
+            <div class="item waves-effect waves-light br-10" v-for="e in plateList"
+                @click="$router.push({ name: e.name })">
                 <mdui-icon :name="e.icon"></mdui-icon>
                 <span class="name">{{ e.name }}</span>
             </div>
@@ -15,12 +16,12 @@
 </template>
 
 <script setup>
-import { ref, onActivated } from 'vue'
+import { ref } from 'vue'
 import { useRouter } from "vue-router"
 import Banners from '@/components/Banners.vue'
 import SongListSilde from '@/components/SongListSlide.vue'
 import SearchInput from '@/components/SearchInput.vue'
-import List from '@/components/List.vue'
+import List from '@/components/GridList.vue'
 import { getRecBanners } from '@/api/banner.js'
 import { getNewSongs } from '@/api/newSongs.js'
 import { getRecPlaylist } from '@/api/playList.js'
@@ -76,10 +77,6 @@ getNewAlbum()
     .then(({ data }) => {
         album.value = data.list.slice(0, 8)
     })
-
-onActivated(() => {
-    window.scrollTo(router.scrollOptions)
-})
 </script>
 
 <style lang="scss" scoped>

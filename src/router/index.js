@@ -16,14 +16,14 @@ const routes = [
         component: () => import('../views/Top.vue')
     },
     {
-        path: '/playlist/:id',
+        path: '/songlist/:id',
         name: '歌单',
-        component: () => import('../views/PlayList.vue'),
+        component: () => import('../views/SongList.vue'),
         children: [
             {
                 path: 'detail',
                 name: '歌单详情',
-                component: () => import('../views/PlayListDetail.vue')
+                component: () => import('../views/SongListDetail.vue')
             }
         ]
     },
@@ -40,9 +40,16 @@ const routes = [
         ]
     },
     {
-        path: '/cate-playlist',
+        path: '/category',
         name: '分类歌单',
-        component: () => import('../views/CatePlayList.vue')
+        component: () => import('../views/Category.vue'),
+        children: [
+            {
+                path: 'view-category',
+                name: '查看分类',
+                component: () => import('../views/CategoryView.vue')
+            }
+        ]
     },
     {
         path: '/singers',
@@ -58,16 +65,7 @@ const routes = [
 
 const router = createRouter({
     history: createWebHistory(),
-    routes,
-    scrollBehavior(to, from, savedPosition) {
-        if (!/歌单详情|查看歌手/.test(to.name)) {
-            if (savedPosition) {
-                router.scrollOptions = savedPosition;
-            }
-        }
-    }
+    routes
 })
-
-router.scrollOptions = { left: 0, top: 0 }
 
 export default router

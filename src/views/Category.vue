@@ -19,7 +19,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import 'mdui/components/tabs.js';
 import 'mdui/components/tab.js';
 import 'mdui/components/circular-progress.js';
-import List from '@/components/List.vue';
+import List from '@/components/GridList.vue';
 import { getCateSongList } from '@/api/cateSongList.js'
 import { useCates } from '@/stores/catesStack.js'
 
@@ -51,33 +51,33 @@ const loadList = (cate) => {
 loadList()
 
 const handleScroll = () => {
-  const scrollTop = window.scrollY || document.documentElement.scrollTop
-  const clientHeight = document.documentElement.clientHeight
-  const scrollHeight = document.documentElement.scrollHeight
+    const scrollTop = window.scrollY || document.documentElement.scrollTop
+    const clientHeight = document.documentElement.clientHeight
+    const scrollHeight = document.documentElement.scrollHeight
 
-  if (scrollTop + clientHeight >= scrollHeight - 10 && fetchStats.value) {
-    fetchStats.value = false
-    const options = {
-        id: currentCate.value.id,
-        pageNo: ++pageNo.value
+    if (scrollTop + clientHeight >= scrollHeight - 10 && fetchStats.value) {
+        fetchStats.value = false
+        const options = {
+            id: currentCate.value.id,
+            pageNo: ++pageNo.value
+        }
+        getCateSongList(options)
+            .then(({ data }) => {
+                fetchStats.value = true
+                playlist.value = playlist.value.concat(data.list)
+            })
+            .catch(() => {
+                fetchStats.value = true
+            })
     }
-    getCateSongList(options)
-        .then(({ data }) => {
-            fetchStats.value = true
-            playlist.value = playlist.value.concat(data.list)
-        })
-        .catch(() => {
-            fetchStats.value = true
-        })
-  }
 }
 
 onMounted(() => {
-  window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll)
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener("scroll", handleScroll)
+    window.removeEventListener("scroll", handleScroll)
 })
 </script>
 

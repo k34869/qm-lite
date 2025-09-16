@@ -9,10 +9,10 @@ import 'mdui/mdui.css'
 import 'swiper/css'
 import { App as NativeApp } from '@capacitor/app'
 import { ScreenOrientation } from '@capacitor/screen-orientation'
-import { enableSafeArea } from '@/utils/safeArea.js'
+import { enableSafeArea } from '@/utils/SafeArea.js'
 import { createMusicPlayer } from '@/hooks/useMusicPlayer.js'
 
-// 开启手机安全区域
+// 启动 Android 安全区域( 注入 CSS 变量 --safe-area )
 enableSafeArea()
 
 // 开启设备硬件返回功能
@@ -24,7 +24,7 @@ NativeApp.addListener('backButton', ({ canGoBack }) => {
     }
 })
 
-// 锁定屏幕方向: portrait
+// 锁定设备屏幕方向: portrait
 ScreenOrientation.lock({ orientation: 'portrait' })
 
 createApp(App)

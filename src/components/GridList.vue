@@ -9,7 +9,8 @@
                 </div>
             </template>
             <template v-else>
-                <div class="item waves-effect waves-light" v-for="e in data" @click="$router.push({ path: '/playlist/' + e.content_id })">
+                <div class="item waves-effect waves-light" v-for="e in data"
+                    @click="$router.push({ path: '/songlist/' + e.content_id })">
                     <img :src="e.cover" class="cover" />
                     <mdui-badge class="listen-num">{{ formatNumber(e.listen_num) }}</mdui-badge>
                     <span class="title line-hide-2">{{ e.title }}</span>
@@ -25,10 +26,12 @@
             </template>
             <template v-else>
                 <div class="item waves-effect waves-light album" v-for="e in data" @click="goToAlbumPage(e)">
-                    <img :src="'//y.qq.com/music/photo_new/T002R300x300M000' + e.mid + '_1.jpg?max_age=2592000'" class="cover album" />
+                    <img :src="'//y.qq.com/music/photo_new/T002R300x300M000' + e.mid + '_1.jpg?max_age=2592000'"
+                        class="cover album" />
                     <mdui-badge class="release-time">{{ e.release_time }}</mdui-badge>
                     <span class="title album line-hide-1">{{ e.name }}</span>
-                    <span class="singer line-hide-1" style="color: rgb(var(--mdui-color-primary)); font-size: 3.2vw">{{ e.singers.map((s) => s.name).join('/') }}</span>
+                    <span class="singer line-hide-1" style="color: rgb(var(--mdui-color-primary)); font-size: 3.2vw">{{
+                        e.singers.map((s) => s.name).join('/') }}</span>
                 </div>
             </template>
         </div>
@@ -40,7 +43,8 @@
                 </div>
             </template>
             <template v-else>
-                <div class="item waves-effect waves-light" v-for="e in data" @click="$router.push({ path: '/playlist/' + e.dissid })">
+                <div class="item waves-effect waves-light" v-for="e in data"
+                    @click="$router.push({ path: '/playlist/' + e.dissid })">
                     <img :src="e.imgurl" class="cover" />
                     <mdui-badge class="listen-num">{{ formatNumber(e.listennum) }}</mdui-badge>
                     <span class="title line-hide-2">{{ e.dissname }}</span>
@@ -63,7 +67,7 @@ const playlist = useTemplateRef('playlist')
 defineProps({
     name: String,
     type: String,
-    data: [ Array, Number ]
+    data: [Array, Number]
 })
 
 const goToAlbumPage = (data) => {

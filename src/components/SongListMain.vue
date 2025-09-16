@@ -19,15 +19,20 @@
         </div>
         <mdui-list v-if="type === '歌单'">
             <div v-show="!searchKey">
-                <SongListItem v-once v-for="(e, i) in songList" :headline="e.songname" :description="description(e.albumname, e.albumdesc)" :serial-number="i + 1" />
+                <SongListItem v-once v-for="(e, i) in songList" :headline="e.songname"
+                    :description="description(e.albumname, e.albumdesc)" :serial-number="i + 1" />
             </div>
-            <SongListItem v-for="(e, i) in filterSongList" :headline="e.songname" :description="description(e.albumname, e.albumdesc)" :serial-number="i + 1" />
+            <SongListItem v-for="(e, i) in filterSongList" :headline="e.songname"
+                :description="description(e.albumname, e.albumdesc)" :serial-number="i + 1" />
         </mdui-list>
         <mdui-list v-if="type === '专辑'">
             <div v-show="!searchKey">
-                <SongListItem v-once v-for="(e, i) in songList" :headline="e.title" :description="description(e.singer.map((s) => s.name).join('-'), e.subtitle)" :serial-number="i + 1" />
+                <SongListItem v-once v-for="(e, i) in songList" :headline="e.title"
+                    :description="description(e.singer.map((s) => s.name).join('-'), e.subtitle)"
+                    :serial-number="i + 1" />
             </div>
-            <SongListItem v-for="(e, i) in filterSongList" :headline="e.title" :description="description(e.singer.map((s) => s.name).join('-'), e.subtitle)" :serial-number="i + 1" />
+            <SongListItem v-for="(e, i) in filterSongList" :headline="e.title"
+                :description="description(e.singer.map((s) => s.name).join('-'), e.subtitle)" :serial-number="i + 1" />
         </mdui-list>
     </div>
 </template>
@@ -41,7 +46,7 @@ import SearchInput from '@/components/SearchInput.vue'
 import SongListItem from '@/components/SongListItem.vue'
 
 const props = defineProps({
-    songList: [ Array, Number ],
+    songList: [Array, Number],
     type: {
         type: String,
         default: '歌单'
@@ -86,20 +91,21 @@ const filterSongList = computed(() => {
 </script>
 
 <style scoped>
-.w1 {
-    margin-bottom: 1.8vw;
-}
-
 .song-list-main {
-    position: relative;
-    padding: 10px 15px;
     width: 100vw;
+    padding-bottom: 17.4vw;
     min-height: calc(100vh - 61.6vw);
     background-color: rgb(var(--mdui-color-surface));
 
+    .w1 {
+        margin-bottom: 1.8vw;
+        padding: 10px 15px 0 15px;
+    }
+
     .song-list-main-contrl {
         height: 12vw;
-        
+        padding: 10px 15px;
+
         .item {
             &.hint {
                 font-size: 4vw;
@@ -127,12 +133,6 @@ const filterSongList = computed(() => {
                 font-size: 4vw;
             }
         }
-    }
-
-    mdui-list {
-        position: relative;
-        left: -15px;
-        width: 100vw;
     }
 }
 </style>
