@@ -6,13 +6,15 @@ import router from './router'
 import '@/assets/css/global.css'
 import '@/assets/js/waves.js'
 import 'mdui/mdui.css'
-import 'swiper/css'
 import { App as NativeApp } from '@capacitor/app'
 import { ScreenOrientation } from '@capacitor/screen-orientation'
 import { enableSafeArea } from '@/utils/SafeArea.js'
 import { createMusicPlayer } from '@/hooks/useMusicPlayer.js'
+import { KeepAwake } from '@capacitor-community/keep-awake'
 
-// 启动 Android 安全区域( 注入 CSS 变量 --safe-area )
+KeepAwake.keepAwake()
+
+// 启用 Android 安全区域( 注入 CSS 变量 --safe-area )
 enableSafeArea()
 
 // 开启设备硬件返回功能

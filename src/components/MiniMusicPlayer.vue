@@ -29,7 +29,7 @@ const { isPlaying, currentTime, duration, changeSource, togglePlay } = useMusicP
 
 const url = 'https://ws6.stream.qqmusic.qq.com/O400003uoBy92OPNeY.ogg?guid=6221191250&vkey=D579697190590E01CB8BE22A9389D3D3508F7851BF3276B634658CFACFD6E54AA9D748E82121B7B5322AA31C555ECC52F289F9A528D0EE4B__v21563fd8e&uin=1152921505154818312&fromtag=120532&src=O400002BjbEz0mW9yT.ogg'
 
-changeSource(url, true)
+changeSource(url)
 </script>
 
 <style scoped>

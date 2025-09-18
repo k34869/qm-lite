@@ -43,7 +43,7 @@ const isHide = computed(() => {
 })
 
 const key = computed(() => {
-    if (/歌单/.test(route.name)) {
+    if (/^(歌单|专辑)$/.test(route.name)) {
         return route.params.id
     } else {
         return undefined

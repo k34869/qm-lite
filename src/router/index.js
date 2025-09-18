@@ -1,4 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Home from '@/views/Home.vue'
+import SongList from '@/views/SongList.vue'
+import SongListDetail from '../views/SongListDetail.vue'
+import Album from '@/views/Album.vue'
+import AlbumSingersView from '../views/AlbumSingersView.vue'
+import Category from '@/views/Category.vue'
+import CategoryView from '../views/CategoryView.vue'
+import Singers from '../views/Singers.vue'
+import Top from '@/views/Top.vue'
+import Search from '../views/Search.vue'
 
 const routes = [
     {
@@ -8,58 +18,58 @@ const routes = [
     {
         path: '/home',
         name: '首页',
-        component: () => import('../views/Home.vue')
+        component: Home
     },
     {
         path: '/top',
         name: '排行',
-        component: () => import('../views/Top.vue')
+        component: Top
     },
     {
         path: '/songlist/:id',
         name: '歌单',
-        component: () => import('../views/SongList.vue'),
+        component: () => SongList,
         children: [
             {
                 path: 'detail',
                 name: '歌单详情',
-                component: () => import('../views/SongListDetail.vue')
+                component: SongListDetail
             }
         ]
     },
     {
         path: '/album/:id',
         name: '专辑',
-        component: () => import('../views/Album.vue'),
+        component: Album,
         children: [
             {
                 path: 'view-singers',
                 name: '查看歌手',
-                component: () => import('../views/AlbumSingersView.vue')
+                component: AlbumSingersView
             }
         ]
     },
     {
         path: '/category',
         name: '分类歌单',
-        component: () => import('../views/Category.vue'),
+        component: Category,
         children: [
             {
                 path: 'view-category',
                 name: '查看分类',
-                component: () => import('../views/CategoryView.vue')
+                component: CategoryView
             }
         ]
     },
     {
         path: '/singers',
         name: '歌手',
-        component: () => import('../views/Singers.vue')
+        component: Singers
     },
     {
         path: '/search',
         name: '搜索',
-        component: () => import('../views/Search.vue')
+        component: Search
     }
 ]
 
