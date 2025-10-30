@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "http://serve.timeic.top:5500/$1"
+    }
+  ]
+}
